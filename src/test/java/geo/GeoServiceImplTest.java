@@ -1,5 +1,7 @@
 package geo;
 
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.netology.entity.Country;
 import ru.netology.entity.Location;
@@ -16,15 +18,13 @@ public class GeoServiceImplTest {
         Location expected = new Location(null, null, null, 0);
         Location actual = geoService.byIp(GeoServiceImpl.LOCALHOST);
         assertThat(expected, samePropertyValuesAs(actual));
-        //TODO !!!Разобраться почему не работает!!!
     }
 
     @Test
     public void moscowIPTest() {
         GeoService geoService = new GeoServiceImpl();
         Location expected = new Location("Moscow", Country.RUSSIA, "Lenina", 15);
-        //Location actual = geoService.byIp(GeoServiceImpl.MOSCOW_IP);
-        Location actual = new Location("Moscow", Country.RUSSIA, "Lenina", 15);
+        Location actual = geoService.byIp(GeoServiceImpl.MOSCOW_IP);
         assertThat(expected, samePropertyValuesAs(actual));
     }
 
